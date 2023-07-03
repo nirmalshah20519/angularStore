@@ -1,0 +1,27 @@
+<div class=" w-75 mx-auto p-2">
+  <table class="table table-striped">
+    <caption></caption>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Gender</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of user$|async">
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.status }}</td>
+        <td>
+          <button type="button" (click)="onEdit(user)" class="btn btn-warning inline">Edit</button>
+          <button type="button" (click)="onDelete(user.id)" class="btn btn-danger inline">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

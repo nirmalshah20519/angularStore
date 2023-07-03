@@ -1,0 +1,30 @@
+
+
+<form (ngSubmit)="onSubmit()" class="w-25 p-4 mx-auto border shadow mt-5" [formGroup]="form">
+
+<ng-container *ngFor="let ob of data">
+    <ng-container [ngSwitch]="ob.controlType">
+        <div class="mb-3" *ngSwitchCase="'Text'">
+            <label [for]="ob.key" class="form-label">{{ob.label}}</label>
+            <input [type]="ob.type" class="form-control" [formControlName]="ob.key" [placeholder]="ob.label">
+        </div>
+        <div class="mb-3" *ngSwitchCase="'Email'">
+            <label [for]="ob.key" class="form-label">{{ob.label}}</label>
+            <input [type]="ob.type" class="form-control" [formControlName]="ob.key" [placeholder]="ob.label">
+        </div>
+        <div class="mb-3" *ngSwitchCase="'Radio'">
+            <label [for]="ob.key" class="form-label">{{ob.label}}</label>
+            <div *ngFor="let o of ob.options">
+                <input type="radio" class="form-check form-check-inline" [name]="ob.key" [formControlName]="ob.key" [value]="o.key">
+                <span>
+                    {{o.value}}
+                </span>
+            </div>
+        </div>
+    </ng-container>
+</ng-container>
+<div>
+    <button type="submit" *ngIf="!(sUser$|async)" [disabled]="form.invalid" class="btn btn-primary">Submit</button>
+    <button type="button" (click)="onUpdate()" *ngIf="sUser$|async" [disabled]="form.invalid" class="btn btn-warning">Update</button>
+</div>
+</form>
